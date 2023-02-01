@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="register-form-container">
+        <form class="form" method='post'>
+          {% csrf_token %}
+          <div class="input-control">
+              <label for="title" id='title' class="input-label" hidden>Title</label>
+              <input type="title" name="title" class="input-field"  value={{data.title}}>
+          </div>
+          <div class="input-control">
+              <label for="discription" id='discription' class="input-label" hidden>Discription</label>
+              <textarea name='discription'>{{data.discription}}</textarea>
+          </div>
+          <div class="input-control">
+            <label for="date" id='date' class="input-label" hidden>Date</label>
+            <input type="date" name="date" class="input-field" value="{{data.date|date:'Y-m-d'}}">
+          </div>
+          <div class="input-control">
+              <input type="submit" name="submit" class="input-submit" value="Submit">
+          </div>
+        </form>  
+    </div>
+     
+
+{% endblock %}

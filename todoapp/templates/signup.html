@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content%}
+      <main class="main">
+        <div class="container">
+            <section class="wrapper">
+                <div class="heading">
+                    <h1 class="text text-large">Signup</h1>
+                    <p class="text text-normal">Already Have Account? <span><a href="login" class="text text-links">Login</a></span>
+                    </p>
+                </div>
+                <form name="login" action={% url 'signup' %} class="form" method='post'>
+                   {% csrf_token %}
+                    <div class="input-control">
+                        <label for="name" id='name' class="input-label" hidden>Name</label>
+                        <input type="name" name="name" class="input-field" placeholder="Full Name">
+                    </div>
+                    <div class="input-control">
+                        <label for="email" id='email' class="input-label" hidden>Email Address</label>
+                        <input type="email" name="email" class="input-field" placeholder="Email Address">
+                    </div>
+                    <div class="input-control">
+                        <label for="password" id='password' class="input-label" hidden>Password</label>
+                        <input type="password" name="password" class="input-field" placeholder="Password">
+                    </div>
+                    <div class="input-control">
+                        <label for="password2" id='password2' class="input-label" hidden>Re-Password</label>
+                        <input type="password" name="password2" class="input-field" placeholder="Re-Password">
+                    </div> 
+                    <div class="input-control">
+                       <input type="submit" name="submit"  class="input-submit" value="Signup">
+                    </div>
+                    
+
+                </form>
+
+            
+            </section>
+        </div>
+    </main>
+{% endblock%}
+    

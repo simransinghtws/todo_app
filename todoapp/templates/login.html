@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="main">
+    <div class="container">
+        <section class="wrapper">
+            <div class="heading">
+                <h1 class="text text-large">Sign In</h1>
+                <p class="text text-normal">New user? <span><a href="signup" class="text text-links">Create an account</a></span>
+                </p>
+            </div>
+            <form name="login" action={% url 'login_form' %}  class="form" method='post'>
+                {% csrf_token %}
+                <div class="input-control">
+                    <label for="username" id='username' class="input-label" hidden>User Name</label>
+                    <input type="username" name="username" class="input-field" placeholder="User Name">
+                </div>
+                <div class="input-control">
+                    <label for="password" id='password' class="input-label" hidden>Password</label>
+                    <input type="password" name="password" class="input-field" placeholder="Password">
+                </div>
+                <div class="input-control">
+                    <input type="submit" name="submit" class="input-submit" value="Login">
+                </div>
+            </form>
+
+        
+        </section>
+    </div>
+</main>
+{% endblock %}
