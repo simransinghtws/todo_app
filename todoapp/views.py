@@ -1,6 +1,4 @@
-from turtle import up
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from todoapp.models import User,Todo
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout
