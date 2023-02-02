@@ -19,8 +19,8 @@ def signup(request):
         else:
             if len(passw)>=8:
                 if passw==repassw:
-                    User.objects.create_user(username = name , email = email  , password = passw)
-                    return render(request,'login.html') 
+                    User.objects.create_user(username = name, email = email, password = passw)
+                    return render(request,'login.html')
                     
                 else:
                     messages.error(request, 'Password Not Match')
