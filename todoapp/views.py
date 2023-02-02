@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here
 
 def signup(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         name=request.POST.get('name')
         email=request.POST.get('email')
         passw=request.POST.get('password')
