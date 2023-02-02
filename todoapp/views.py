@@ -17,7 +17,7 @@ def signup(request):
             return render(request,'login.html')
                            
         else:
-            if len(passw)>=8:
+            if len(passw) >= 8:
                 if passw==repassw:
                     User.objects.create_user(username = name, email = email, password = passw)
                     return render(request,'login.html')
