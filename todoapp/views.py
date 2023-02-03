@@ -15,7 +15,6 @@ def signup(request):
         if User.objects.filter(username=name).exists():
             messages.warning(request, 'User Already Exists')
             return render(request,'login.html')
-                           
         else:
             if len(passw) >= 8:
                 if passw==repassw:
