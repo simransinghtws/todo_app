@@ -76,6 +76,7 @@ def todo_add(request):
 def list_todo(request):
     context ={}
     context["dataset"] = Todo.objects.all()
+    print(context)
     return render(request, "list_todo.html", context)
 
        
