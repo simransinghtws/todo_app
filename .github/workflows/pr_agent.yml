@@ -11,10 +11,15 @@ jobs:
 
       - name: Clone pr-agent repository
         run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
-        
+
+      - name: Inside pr-agent dir
+        run: cd pr-agent
+      
       - name: List files in the directory
         run: ls
+
 
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
