@@ -15,6 +15,12 @@ jobs:
       - name: list of folder
         run: ls
 
+      - name: Go inside main dir
+        run: cd pr-agent.git
+
+      - name: list of folder
+        run: ls
+
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
