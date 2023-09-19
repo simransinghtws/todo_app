@@ -12,20 +12,15 @@ jobs:
       - name: Clone pr-agent repository
         run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
 
-      - name: git fetch
-        run: git fetch
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
 
-      - name: git branch
-        run: git branch
-
-      - name: list of folder
-        run: ls
-
-      - name: Inside pr-agent dir
-        run: cd pr-agent
-      
-      - name: run docker
-        run: cd pr_agent
+      - name: Build and start Docker containers
+        run: |
+          cd pr-agent
+          docker-compose up --build -d
 
       - name: list of folder
         run: ls
