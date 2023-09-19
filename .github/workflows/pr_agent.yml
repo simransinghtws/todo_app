@@ -10,20 +10,18 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clone pr-agent repository
-        run: git clone --mirror https://github.com/sarbjitsinghgrewal/pr-agent.git
-        # Make sure you are in the cloned repository directory
-        working-directory: ./pr-agent.git
+        run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
 
       - name: List files in the cloned repository
-        run: ls ./pr-agent.git
+        run: ls ./pr-agent
 
       - name: Checkout the fix_bitbucket_pipeline branch
         run: |
-          cd ./pr-agent.git
+          cd ./pr-agent
           git checkout fix_bitbucket_pipeline
 
       - name: List files after checking out the branch
-        run: ls ./pr-agent.git
+        run: ls ./pr-agent
 
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
