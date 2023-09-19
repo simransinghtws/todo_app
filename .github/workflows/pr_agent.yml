@@ -11,12 +11,7 @@ jobs:
 
       - name: Clone pr-agent repository
         run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
-        working-directory: ./pr-agent
-
-      - name: Checkout to dev branch
-        run: git checkout dev
-        working-directory: ./pr-agent
-
+        
       - name: List files in the directory
         run: ls
 
