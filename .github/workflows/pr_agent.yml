@@ -13,7 +13,7 @@ jobs:
         run: git clone --mirror https://github.com/sarbjitsinghgrewal/pr-agent.git
 
       - name: list of folder
-        run: ls
+        run: git branch -a
 
       - name: Go inside main dir
         run: cd pr-agent.git
