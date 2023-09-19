@@ -12,12 +12,23 @@ jobs:
       - name: Clone pr-agent repository
         run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
 
-      - name: Inside pr-agent dir
-        run: cd pr-agent
-      
+      - name: git fetch
+        run: git fetch
+
       - name: git branch
         run: git branch
 
+      - name: list of folder
+        run: ls
+
+      - name: Inside pr-agent dir
+        run: cd pr-agent
+      
+      - name: run docker
+        run: cd pr_agent
+
+      - name: list of folder
+        run: ls
 
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
