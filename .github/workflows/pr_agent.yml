@@ -11,17 +11,18 @@ jobs:
 
       - name: Clone pr-agent repository
         run: git clone --mirror https://github.com/sarbjitsinghgrewal/pr-agent.git
+        # Make sure you are in the cloned repository directory
+        working-directory: pr-agent.git
 
-      - name: list of folder
+      - name: List files in the cloned repository
+        run: ls
+
+      - name: Checkout the fix_bitbucket_pipeline branch
         run: git checkout fix_bitbucket_pipeline
 
-      - name: Go inside main dir
-        run: cd pr-agent.git
-
-      - name: list of folder
+      - name: List files after checking out the branch
         run: ls
 
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
