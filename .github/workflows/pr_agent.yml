@@ -18,10 +18,20 @@ jobs:
       - name: Checkout the fix_bitbucket_pipeline branch
         run: |
           cd ./pr-agent
-          git checkout fix_bitbucket_pipeline
+          git checkout bitbucket_webhook_feature
 
       - name: List files after checking out the branch
         run: ls ./pr-agent
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      - name: Build and start Docker containers
+        run: |
+          cd pr-agent
+          docker-compose up --build
 
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
