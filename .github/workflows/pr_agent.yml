@@ -15,8 +15,8 @@ jobs:
       - name: Inside pr-agent dir
         run: cd pr-agent
       
-      - name: List files in the directory
-        run: ls
+      - name: git branch
+        run: git branch
 
 
     env:
