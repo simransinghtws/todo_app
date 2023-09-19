@@ -10,17 +10,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clone pr-agent repository
-        run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
-
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Build and start Docker containers
-        run: |
-          cd pr-agent
-          docker-compose up --build -d
+        run: git clone --mirror https://github.com/sarbjitsinghgrewal/pr-agent.git
 
       - name: list of folder
         run: ls
