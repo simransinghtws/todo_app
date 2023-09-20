@@ -32,6 +32,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
+      - name: Copy GitHub event payload
+        run: |
+          mkdir -p ./github/workflow
+          cp $GITHUB_EVENT_PATH ./github/workflow/event.json
+
       - name: Build and start Docker containers
         run: |
           cd pr-agent
