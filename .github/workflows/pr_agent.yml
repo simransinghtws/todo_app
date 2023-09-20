@@ -1,6 +1,7 @@
 on:
   pull_request:
   issue_comment:
+
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
@@ -25,6 +26,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
+
+      # Copy the GitHub event payload to a known location within the workspace
+      - name: Copy GitHub event payload
+        run: |
+          mkdir -p /github/workflow
+          cp $GITHUB_EVENT_PATH /github/workflow/event.json
 
       - name: Build and start Docker containers
         run: |
