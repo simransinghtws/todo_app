@@ -16,7 +16,7 @@ jobs:
       - name: List files in the cloned repository
         run: ls ./pr-agent
 
-      - name: go inside pr-agent
+      - name: Go inside pr-agent
         run: cd ./pr-agent
 
       - name: List files after checking out the branch
@@ -27,12 +27,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      # Create the directory in the workspace and copy the GitHub event payload there
-      - name: Copy GitHub event payload
-        run: |
-          mkdir -p ./github/workflow
-          cp $GITHUB_EVENT_PATH ./github/workflow/event.json
-
       - name: Build and start Docker containers
         run: |
           cd pr-agent
@@ -42,7 +36,3 @@ jobs:
         run: |
           echo "OPENAI_KEY: $OPENAI_KEY"
           echo "GITHUB_TOKEN: $GITHUB_TOKEN"
-
-    env:
-      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
