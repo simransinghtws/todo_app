@@ -10,15 +10,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clone pr-agent repository
-        run: git clone https://github.com/sarbjitsinghgrewal/pr-agent.git
+        run: git clone https://github.com/nandantws/pr-agent.git
 
       - name: List files in the cloned repository
         run: ls ./pr-agent
 
-      - name: Checkout the fix_bitbucket_pipeline branch
-        run: |
-          cd ./pr-agent
-          git checkout bitbucket_webhook_feature
+      - name: go inside pr-agent
+        run: cd ./pr-agent
 
       - name: List files after checking out the branch
         run: ls ./pr-agent
