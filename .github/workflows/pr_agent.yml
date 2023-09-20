@@ -33,6 +33,11 @@ jobs:
           cd pr-agent
           docker-compose up --build
 
+      - name: Print environment variables
+        run: |
+          echo "OPENAI_KEY: $OPENAI_KEY"
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+
     env:
       OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
