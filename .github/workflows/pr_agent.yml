@@ -27,11 +27,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      # Copy the GitHub event payload to a known location within the workspace
+      # Create the directory in the workspace and copy the GitHub event payload there
       - name: Copy GitHub event payload
         run: |
-          mkdir -p /github/workflow
-          cp $GITHUB_EVENT_PATH /github/workflow/event.json
+          mkdir -p ./github/workflow
+          cp $GITHUB_EVENT_PATH ./github/workflow/event.json
 
       - name: Build and start Docker containers
         run: |
