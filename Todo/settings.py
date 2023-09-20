@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 # AUTH_USER_MODEL='todoapp.User'
 
-LOGIN_URL = '/login'
+# LOGIN_URL = '/login'
 
 
 # TIME_ZONE = 'UTC'
