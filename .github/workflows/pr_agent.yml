@@ -1,27 +1,48 @@
 on:
   pull_request:
   issue_comment:
+
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
     name: Run pr agent on every pull request, respond to user comments
+
+    env:
+      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Clone pr-agent repository
-        run: git clone --mirror https://github.com/sarbjitsinghgrewal/pr-agent.git
+        run: git clone https://github.com/nandantws/pr-agent.git
 
-      - name: list of folder
-        run: ls
+      - name: List files in the cloned repository
+        run: ls ./pr-agent
 
-      - name: Go inside main dir
-        run: cd pr-agent.git
+      - name: Go inside pr-agent
+        run: cd ./pr-agent
 
-      - name: list of folder
-        run: ls
+      - name: List files after checking out the branch
+        run: ls ./pr-agent
 
-    env:
-      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
 
+      - name: Copy GitHub event payload
+        run: |
+          mkdir -p ./github/workflow
+          cp $GITHUB_EVENT_PATH ./github/workflow/event.json
+
+      - name: Build and start Docker containers
+        run: |
+          cd pr-agent
+          docker-compose up --build
+
+      - name: Print environment variables
+        run: |
+          echo "OPENAI_KEY: $OPENAI_KEY"
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
