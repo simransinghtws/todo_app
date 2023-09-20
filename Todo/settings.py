@@ -111,7 +111,7 @@ LANGUAGE_CODE = 'en-us'
 LOGIN_URL = '/login'
 
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 
 # USE_I18N = True
 
