@@ -28,7 +28,7 @@ jobs:
         run: ls ./pr-agent
 
       - name: Go inside github_action directory
-        run: docker build -t myapp:latest -f Dockerfile.github_action . && docker run --rm -it myapp:latest
+        run: docker build -t myapp:latest -f pr-agent/Dockerfile.github_action .
 
 
       - name: Print environment variables
