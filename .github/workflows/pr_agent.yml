@@ -28,10 +28,10 @@ jobs:
         run: ls ./pr-agent
 
       - name: Go inside github_action directory
-        run: cd github_action
+        run: cd ./github_action
 
       - name: Provide permissions
-        run: chmod +x entrypoint.sh
+        run: chmod +x ./entrypoint.sh
 
       - name: Run .sh file
         run: ./entrypoint.sh
