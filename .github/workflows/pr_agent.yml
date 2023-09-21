@@ -27,13 +27,17 @@ jobs:
       - name: List files after checking out the branch
         run: ls ./pr-agent
 
-      - name: provide permissions
+      - name: Provide permissions
         run: chmod +x github_action/entrypoint.sh
 
-      - name: run .sh file
-        run: /entrypoint.sh
+      - name: Go inside github_action directory
+        run: cd github_action
+
+      - name: Run .sh file
+        run: ./entrypoint.sh
 
       - name: Print environment variables
         run: |
           echo "OPENAI_KEY: $OPENAI_KEY"
           echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+
