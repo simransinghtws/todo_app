@@ -28,13 +28,8 @@ jobs:
         run: ls ./pr-agent
 
       - name: Go inside github_action directory
-        run: cd ./github_action
+        run: docker build -t myapp:latest -f Dockerfile.github_action . && docker run --rm -it myapp:latest
 
-      - name: Provide permissions
-        run: chmod +x ./entrypoint.sh
-
-      - name: Run .sh file
-        run: ./entrypoint.sh
 
       - name: Print environment variables
         run: |
