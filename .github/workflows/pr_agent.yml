@@ -27,20 +27,11 @@ jobs:
       - name: List files after checking out the branch
         run: ls ./pr-agent
 
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+      - name: provide permissions
+        run: chmod +x github_action/entrypoint.sh
 
-      - name: Copy GitHub event payload
-        run: |
-          mkdir -p ./github/workflow
-          cp $GITHUB_EVENT_PATH ./github/workflow/event.json
-
-      - name: Build and start Docker containers
-        run: |
-          cd pr-agent
-          docker-compose up --build
+      -name: run .sh file
+        run: /entrypoint.sh
 
       - name: Print environment variables
         run: |
