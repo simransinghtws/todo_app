@@ -11,8 +11,8 @@ class Todo(models.Model):
     
 class TodoList(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    todo=models.ForeignKey(Todo,on_delete=models.CASCADE)
-    def __str__(self):
-        return self.user.username
+    # todo=models.ForeignKey(Todo,on_delete=models.CASCADE)
+    # def __str__(self):
+    #     return self.user.username
     
   
