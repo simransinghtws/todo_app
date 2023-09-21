@@ -30,7 +30,7 @@ jobs:
       - name: provide permissions
         run: chmod +x github_action/entrypoint.sh
 
-      -name: run .sh file
+      - name: run .sh file
         run: /entrypoint.sh
 
       - name: Print environment variables
