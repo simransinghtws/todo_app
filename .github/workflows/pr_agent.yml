@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: PR Agent action step
         id: pragent
-        uses: nandantws/pr-agent@main
+        uses: sarbjitsinghgrewal/pr-agent@github_actions_multi_commands
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
