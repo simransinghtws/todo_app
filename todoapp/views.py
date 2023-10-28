@@ -1,10 +1,35 @@
 from django.shortcuts import redirect, render
-from todoapp.models import User,Todo
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 
-# Create your views here
+
+from .models import Todo,User
+class HomeListView(ListView):
+    model = Todo
+    context_object_name = "dataset"
+    template_name = "home.html"
+
+class TodoCreateView(CreateView):
+    model = Todo
+    fields = ["title","description","date"]
+    template_name = "create-todo.html"
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+class TodoUpdateView(UpdateView):
+    model = Todo
+    template_name = "update-todo.html"
+    fields = ["title","description","date"]
+
+
+class TodoDeleteView(DeleteView):
+    model = Todo
+    template_name = "delete-todo.html"
+    success_url = reverse_lazy("home")
 
 def signup(request):
     if request.method == 'POST':
@@ -54,75 +79,3 @@ def logout_form(request):
     logout(request)
     return redirect('login_form')
     
-
-@login_required
-def home(request):
-    return render(request,'home.html')
-    
-
-@login_required
-def todo_add(request):
-    if request.method=='POST':
-        title=request.POST.get('title')
-        discription=request.POST.get('discription')
-        date=request.POST.get('date')
-        Todo.objects.create(title=title,discription=discription,date=date)
-        return redirect('list_todo')
-    else:
-        return render(request,'home.html')
-
-
-@login_required
-def list_todo(request):
-    context ={}
-    context["dataset"] = Todo.objects.all()
-    print(context)
-    return render(request, "list_todo.html", context)
-
-       
-# @login_required
-# def edit_todo(request,pk):
-#     if request.method=='GET':
-#         if Todo.objects.filter(pk=pk).exists():
-#             print('Exists')
-#             return render(request,'edit_todo.html')
-#         else:
-#             print('not exists')
-#             return redirect('update_todo')
-#     else:
-#         return redirect('update_todo')
-
-
-def update_todo(request,pk):        
-    if request.method=='POST':
-        update=Todo.objects.get(id=pk)
-        title=request.POST.get('title')
-        discription=request.POST.get('discription')
-        date=request.POST.get('date')
-        update.title=title
-        update.discription=discription
-        update.date=date
-        update.save()
-        return redirect('list_todo')
-    else:
-        data=Todo.objects.get(id=pk)
-        return render(request,'update_todo.html',{'data':data})
-
-@login_required
-def del_todo(request,pk):
-    if request.method=="GET":
-        data=Todo.objects.get(id=pk)
-        data.delete()
-        return redirect('list_todo')
-    else:
-        return redirect('list_todo')
-
-
-            
-    
-
-
-
-
-
-
