@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  <title>Todo APP</title>
+{% endblock %}
+{% block nav %}
+  <form class="d-flex">
+    <a href="{% url 'todo_add' %}"><button class="btn btn-outline-primary mx-3" type="submit">Add Todo</button></a>
+    <a href="logout"><button class="btn btn-outline-success mx-1" type="submit">Logout</button></a>
+  </form>
+{% endblock %}
+
+{% block content %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">Operations</th>
+      </tr>
+    </thead>
+    {% for data in dataset %}
+      <tr>
+        <td>{{ data.title }}</td>
+        <td>{{ data.description }}</td>
+        <td>{{ data.date }}</td>
+        <td>
+          <a href="{% url 'update_todo' data.id %}"><button class="btn btn-outline-success" type="submit">Edit</button></a>
+          <a href="{% url 'del_todo' data.id %}"><button class="btn btn-outline-danger" type="submit">Delete</button></a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
